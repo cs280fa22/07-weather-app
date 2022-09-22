@@ -29,14 +29,13 @@ function getCurrentCondition(location) {
     .then((response) => response.json())
     .then((data) => {
       const forecast = data[0];
-      console.log(forecast);
+      updateUI(location, forecast);
     })
     .catch((err) => console.log(err));
 }
 
 function updateUI(location, forecast) {
-  // TODO update the following based on `location` and `forecast` arguments!
-  document.getElementById("name").innerText = "City Name";
-  document.getElementById("condition").innerText = "Weather Condition";
-  document.getElementById("temperature").innerText = "Temperature";
+  document.getElementById("name").innerText = location.LocalizedName;
+  document.getElementById("condition").innerText = forecast.WeatherText;
+  document.getElementById("temperature").innerText = forecast.Temperature.Imperial.Value;
 }
