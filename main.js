@@ -37,5 +37,7 @@ function getCurrentCondition(location) {
 function updateUI(location, forecast) {
   document.getElementById("name").innerText = location.LocalizedName;
   document.getElementById("condition").innerText = forecast.WeatherText;
-  document.getElementById("temperature").innerText = forecast.Temperature.Imperial.Value;
+  document.getElementById(
+    "temperature"
+  ).innerHTML = `${forecast.Temperature.Imperial.Value} &#8457`;
 }
