@@ -1,8 +1,9 @@
-import './style.css'
+import "./style.css";
 
 const BASE_URL = "https://dataservice.accuweather.com";
-const API_KEY = "USE_YOUR_API_KEY"; // terrible practice!
-// You should never save API key directly in source code
+const API_KEY = "SzGKoWR6SMU6lGEooHfyYgq7ZMyGicad"; // terrible practice!
+// You should never save API key directly in source code!
+// In future lessons we will learn a better practice!
 
 const search = document.getElementById("search");
 search.addEventListener("submit", getWeatherForecast);
@@ -14,9 +15,13 @@ function getWeatherForecast(event) {
 }
 
 function getLocationKey(city) {
-  // TODO get the "location key" for the given `city`!
-  //  then call getCurrentCondition to retrieve weather forecast for it!
-  console.log(city);
+  fetch(`${BASE_URL}/locations/v1/cities/search?apikey=${API_KEY}&q=${city}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const location = data[0];
+      console.log(location);
+    })
+    .catch((err) => console.log(err));
 }
 
 function getCurrentCondition(location) {
