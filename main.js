@@ -19,14 +19,19 @@ function getLocationKey(city) {
     .then((response) => response.json())
     .then((data) => {
       const location = data[0];
-      console.log(location);
+      getCurrentCondition(location);
     })
     .catch((err) => console.log(err));
 }
 
 function getCurrentCondition(location) {
-  // TODO get the "current condition" based on the `location` argument!
-  //  then call updateUI to update the UI!
+  fetch(`${BASE_URL}/currentconditions/v1/${location.Key}?apikey=${API_KEY}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const forecast = data[0];
+      console.log(forecast);
+    })
+    .catch((err) => console.log(err));
 }
 
 function updateUI(location, forecast) {
